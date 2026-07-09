@@ -1,0 +1,879 @@
+/* ==========================================================================
+   1. VARIABLES & BASE STYLES
+   ========================================================================== */
+:root {
+    --primary-color: #A3B19B;    /* Soft Sage */
+    --secondary-color: #E8D8CE;  /* Champagne / Warm Beige */
+    --accent-color: #D4A3A3;     /* Dusty Pink */
+    --dark-text: #333333;        /* Charcoal untuk teks utama */
+    --light-bg: #FAFAFA;         /* Background bersih */
+    --white: #FFFFFF;
+    --font-serif: 'Playfair Display', 'Georgia', serif;
+    --font-sans: 'Montserrat', 'Helvetica Neue', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--dark-text);
+    background-color: var(--light-bg);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, .brand-logo {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGATION (Sticky)
+   ========================================================================== */
+header {
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.brand-logo {
+    font-size: 1.8rem;
+    color: var(--dark-text);
+}
+
+.brand-logo span {
+    color: var(--primary-color);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    color: var(--primary-color);
+}
+
+.btn-cta {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-cta:hover {
+    background-color: #8E9C87; /* Sage lebih gelap sedikit */
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(163, 177, 155, 0.3);
+}
+
+/* Hamburger Menu Mobile */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background-color: var(--dark-text);
+}
+
+/* ==========================================================================
+   3. REUSABLE COMPONENTS & SECTIONS
+   ========================================================================== */
+section {
+    padding: 80px 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent-color);
+    margin: 15px auto 0;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 50px;
+    font-style: italic;
+}
+
+/* Product Cards Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: var(--transition);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.product-img {
+    position: relative;
+    background-color: #eee;
+    aspect-ratio: 3/4; /* Proporsi standar foto katalog fashion */
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.product-price {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   4. INDEX / HOME PAGE SPECIFIC
+   ========================================================================== */
+/* Hero Section */
+.hero {
+    background-color: var(--secondary-color);
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: #4A3E3D;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 35px;
+    font-family: var(--font-serif);
+    font-style: italic;
+}
+
+/* Profile / About */
+.about-box {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+}
+
+.about-text h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* Call To Action Section */
+.cta-banner {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+}
+
+.cta-banner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.cta-banner p {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.btn-light {
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.btn-light:hover {
+    background-color: var(--secondary-color);
+    color: #4A3E3D;
+}
+
+/* Testimonials */
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    border-top: 3px solid var(--accent-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   5. CONTACT PAGE SPECIFIC
+   ========================================================================== */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    margin-bottom: 20px;
+}
+
+.info-item strong {
+    display: block;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.map-container {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ==========================================================================
+   6. FOOTER
+   ========================================================================== */
+footer {
+    background-color: #2D332A; /* Sage gelap premium */
+    color: #E2E2E2;
+    padding: 50px 20px 20px;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-brand h3 {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links h4 {
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #414A3D;
+    padding-top: 20px;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* ==========================================================================
+   7. RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        display: none; /* Dapat dikembangkan dengan JS toggle jika diperlukan */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        gap: 15px;
+        text-align: center;
+    }
+    
+    /* Class tambahan jika active via JS */
+    .nav-menu.show {
+        display: flex;
+    }
+
+    .nav-container {
+        position: relative;
+    }
+
+    .nav-container .btn-cta {
+        display: none; /* Sembunyikan CTA utama di mobile, masukkan ke menu jika perlu */
+    }
+
+    .hero-content h1 {
+        font-size: 2.3rem;
+    }
+
+    .about-box, .contact-wrapper {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sastriwati Official - Busana Muslim Premium & Elegan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">Sastriwati<span>.</span></a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Beranda</a></li>
+                <li><a href="produk.html">Produk</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+
+            <a href="https://wa.me/628XXXXXXXXXX" target="_blank" class="btn-cta">Hubungi Kami</a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Kesederhanaan yang Memancarkan Keanggunan</h1>
+            <p>Koleksi busana muslim modern eksklusif dengan sentuhan material premium yang sejuk, jatuh sempurna, dan anggun sepanjang hari.</p>
+            <a href="produk.html" class="btn-cta" style="padding: 15px 35px; font-size: 1rem;">Lihat Koleksi</a>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="about-box">
+            <img src="https://via.placeholder.com/600x600/E8D8CE/333333?text=Sastriwati+Profile" alt="Tentang Sastriwati Official" style="border-radius: 8px; max-width: 100%; width: 450px;">
+            <div class="about-text">
+                <h3>Tentang Sastriwati</h3>
+                <p>Lahir dari komitmen untuk menghadirkan busana muslim yang tidak hanya memenuhi syariat, tetapi juga menonjolkan nilai estetika tinggi. Sastriwati berfokus pada desain minimalis-modern, pemilihan warna pastel soft yang menenangkan, serta penggunaan kain kualitas tinggi yang bersirkulasi udara baik dan bebas kusut.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: #F4F6F3;">
+        <div class="container">
+            <h2 class="section-title">Produk Terlaris</h2>
+            <p class="subtitle">Koleksi paling dicari dan disukai musim ini</p>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/600x800/A3B19B/ffffff?text=Dahlia+Series" alt="Dahlia Series">
+                    </div>
+                    <div class="product-info">
+                        <h3>Dahlia Premium Dress</h3>
+                        <p class="product-price">Rp 349.000</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/600x800/D4A3A3/ffffff?text=Tulip+One-Set" alt="Tulip One-Set">
+                    </div>
+                    <div class="product-info">
+                        <h3>Tulip One-Set Kulot</h3>
+                        <p class="product-price">Rp 389.000</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/600x800/E8D8CE/333333?text=Lily+Abaya" alt="Lily Abaya">
+                    </div>
+                    <div class="product-info">
+                        <h3>Lily Casual Abaya</h3>
+                        <p class="product-price">Rp 315.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h2>Dapatkan Koleksi Eksklusif Kami Sekarang</h2>
+            <p>Hubungi admin kami untuk konsultasi ukuran, ketersediaan warna, atau pemesanan custom.</p>
+            <a href="https://wa.me/628XXXXXXXXXX" target="_blank" class="btn-light">Pesan Lewat WhatsApp</a>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Apa Kata Mereka?</h2>
+        <p class="subtitle">Ulasan jujur dari pelanggan setia Sastriwati</p>
+        
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Bahannya adem banget (Lionel Richie), nggak menerawang tapi jatuhnya pas dipakai anggun banget. Jahitannya rapi sekelas butik!"</p>
+                <p class="testimonial-author">- Sarah Amalia, Jakarta</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Suka sekali sama warna sage-nya Sastriwati. Benar-benar mewah warnanya lembut, pas dipakai lebaran kemarin panen pujian."</p>
+                <p class="testimonial-author">- Rahma W., Bandung</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Pesan via WhatsApp cepat tanggap. One-set kulotnya nyaman buat dipakai harian maupun acara semi-formal."</p>
+                <p class="testimonial-author">- Dian K., Surabaya</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Sastriwati.</h3>
+                <p>Sederhana. Anggun. Premium.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="produk.html">Produk</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Hubungi Kami</h4>
+                <p>WhatsApp: +62 8XX-XXXX-XXXX</p>
+                <p>Instagram: @sastriwati.official</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sastriwati Official. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Produk - Sastriwati Official</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">Sastriwati<span>.</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="produk.html" class="active">Produk</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+            <a href="https://wa.me/628XXXXXXXXXX" target="_blank" class="btn-cta">Hubungi Kami</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section style="background-color: var(--secondary-color); padding: 40px 20px; text-align: center;">
+        <h1 style="font-family: var(--font-serif); font-size: 2.8rem;">Koleksi Busana Muslim</h1>
+        <p style="font-style: italic; color: #555;">Pilihan terbaik untuk keanggunan seluruh keluarga</p>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Busana Muslim Wanita</h2>
+        <p class="subtitle">Gamis, Dress, Abaya, dan One-Set Elegan</p>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://via.placeholder.com/600x800/A3B19B/ffffff?text=Dahlia+Dress" alt="Dahlia Dress">
+                </div>
+                <div class="product-info">
+                    <h3>Dahlia Dress Sage</h3>
+                    <p class="product-price">Rp 349.000</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://via.placeholder.com/600x800/D4A3A3/ffffff?text=Tulip+Set" alt="Tulip One Set">
+                </div>
+                <div class="product-info">
+                    <h3>Tulip One-Set A-Line</h3>
+                    <p class="product-price">Rp 389.000</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://via.placeholder.com/600x800/E8D8CE/333333?text=Jasmine+Dress" alt="Jasmine Dress">
+                </div>
+                <div class="product-info">
+                    <h3>Jasmine Luxury Dress</h3>
+                    <p class="product-price">Rp 420.000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: #F4F6F3;">
+        <div class="container">
+            <h2 class="section-title">Busana Muslim Pria</h2>
+            <p class="subtitle">Koko Modern, Kurta, dan Kemeja Kasual</p>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/600x800/A3B19B/ffffff?text=Koko+Modern+Sage" alt="Koko Premium">
+                    </div>
+                    <div class="product-info">
+                        <h3>Koko Modern Sage Slimfit</h3>
+                        <p class="product-price">Rp 245.000</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/600x800/333333/ffffff?text=Kurta+Charcoal" alt="Kurta Premium">
+                    </div>
+                    <div class="product-info">
+                        <h3>Kurta Premium Charcoal</h3>
+                        <p class="product-price">Rp 265.000</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/600x800/E8D8CE/333333?text=Kemeja+Koko+Taupe" alt="Kemeja Koko">
+                    </div>
+                    <div class="product-info">
+                        <h3>Kemeja Koko Taupe Accent</h3>
+                        <p class="product-price">Rp 255.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Busana Muslim Anak-Anak</h2>
+        <p class="subtitle">Koleksi Nyaman, Ceria, dan Tetap Syari untuk Si Kecil</p>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://via.placeholder.com/600x800/D4A3A3/ffffff?text=Gamis+Anak+Lily" alt="Gamis Anak">
+                </div>
+                <div class="product-info">
+                    <h3>Lily Kid's Gamis Set</h3>
+                    <p class="product-price">Rp 195.000</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://via.placeholder.com/600x800/A3B19B/ffffff?text=Koko+Anak+Alif" alt="Koko Anak">
+                </div>
+                <div class="product-info">
+                    <h3>Alif Kid's Koko Set</h3>
+                    <p class="product-price">Rp 185.000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Sastriwati.</h3>
+                <p>Sederhana. Anggun. Premium.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="produk.html">Produk</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Hubungi Kami</h4>
+                <p>WhatsApp: +62 8XX-XXXX-XXXX</p>
+                <p>Instagram: @sastriwati.official</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sastriwati Official. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami - Sastriwati Official</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="nav-container">
+            <a href="index.html" class="brand-logo">Sastriwati<span>.</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="produk.html">Produk</a></li>
+                <li><a href="kontak.html" class="active">Kontak</a></li>
+            </ul>
+            <a href="https://wa.me/628XXXXXXXXXX" target="_blank" class="btn-cta">Hubungi Kami</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <div class="container">
+            <h1 class="section-title">Hubungi UMKM Sastriwati</h1>
+            <p class="subtitle">Silakan berkunjung ke butik kami atau pesan secara daring</p>
+            
+            <div class="contact-wrapper">
+                
+                <div class="contact-info">
+                    <h3>Butik Sastriwati</h3>
+                    <p style="margin-bottom: 25px; color: #666;">Kami sangat senang bisa melayani Anda. Jika Anda ingin melihat langsung kualitas bahan kain (touch & feel) serta fitting ukuran, silakan kunjungi alamat kami.</p>
+                    
+                    <div class="info-item">
+                        <strong>Alamat Galeri / Workshop</strong>
+                        <p>Jl. Utama UMKM Modest Fashion No. 45, Komplek Hijrah Kreatif, Jakarta, Indonesia</p>
+                    </div>
+
+                    <div class="info-item">
+                        <strong>Jam Operasional</strong>
+                        <p>Senin - Sabtu: 09.00 - 18.00 WIB<br>Minggu: Dengan Perjanjian</p>
+                    </div>
+
+                    <div class="info-item">
+                        <strong>Layanan Pelanggan (Online)</strong>
+                        <p>WhatsApp: +62 8XX-XXXX-XXXX (Order Cepat)<br>Email: halo@sastriwati.com</p>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2625292275684!2d106.8218151!3d-6.2290748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e4b3e8e283%3A0x63c5a611c03bfd7a!2sJakarta!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Sastriwati.</h3>
+                <p>Sederhana. Anggun. Premium.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="produk.html">Produk</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Hubungi Kami</h4>
+                <p>WhatsApp: +62 8XX-XXXX-XXXX</p>
+                <p>Instagram: @sastriwati.official</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sastriwati Official. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+// Mengontrol Menu Navigasi Mobile (Hamburger Menu Toggle)
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            
+            // Opsional animasi ringkas hamburger line
+            const lines = mobileMenuBtn.querySelectorAll('span');
+            lines.forEach(line => line.style.transition = "all 0.3s ease");
+        });
+    }
+});
